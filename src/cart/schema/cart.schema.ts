@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-class CartItem {
+export class CartItem {
     product_id: string;
     quantity: number;
     price: number;
@@ -9,7 +9,7 @@ class CartItem {
 
 @Schema()
 export class Cart {
-  @Prop()
+  @Prop({ref: 'Customer'})
   customer: string;
   
   @Prop()
