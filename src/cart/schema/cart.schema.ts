@@ -2,9 +2,14 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
 export class CartItem {
-    product_id: string;
-    quantity: number;
-    price: number;
+  @Prop({ref: 'Product'})
+  product_id: string;
+
+  @Prop()
+  quantity: number;
+  
+  @Prop()
+  price: number;
   }
 
 @Schema()

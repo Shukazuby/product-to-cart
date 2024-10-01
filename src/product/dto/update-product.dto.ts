@@ -1,3 +1,3 @@
-import { CreateProductDto } from './create-product.dto';
+import { ProductDto } from './create-product.dto';
 
-export class UpdateProductDto extends CreateProductDto {}
+export class UpdateProductDto extends ProductDto {}

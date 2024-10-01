@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { CustomerService } from './customer.service';
-import { CreateCustomerDto, customerDto } from './dto/create-customer.dto';
+import { customerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BaseResponseTypeDTO } from 'src/utils';
@@ -31,7 +31,7 @@ export class CustomerController {
     status: HttpStatus.BAD_REQUEST,
     description: 'Invalid input data',
   })
- async findOne(@Param('id') id: string) {
+ async getACustomer(@Param('id') id: string) {
     const result = await this.customerService.getACustomer(id);
     return result
 
@@ -39,15 +39,15 @@ export class CustomerController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update a customer' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'User Register' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'update customer' })
   @ApiResponse({
     status: HttpStatus.BAD_REQUEST,
     description: 'Invalid input data',
   })
  async updateACustomer(
   @Param('id') id: string, 
-  @Body() updateCustomerDto: UpdateCustomerDto) {
-    const result = await this.customerService.updateACustomer(id, updateCustomerDto);
+  @Body() payload: UpdateCustomerDto) {
+    const result = await this.customerService.updateACustomer(id, payload);
     return result
   }
 
