@@ -1,5 +1,5 @@
 import { BadRequestException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { CreateProductDto, ProductDto } from './dto/create-product.dto';
+import { ProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { BaseResponseTypeDTO } from 'src/utils';
 import { Product } from './schema/product.schema';
@@ -15,16 +15,16 @@ export class ProductService {
 
   async createProduct(payload: ProductDto): Promise<BaseResponseTypeDTO> {
     try {
-      const customer = new this.prodModel({
+      const product = new this.prodModel({
         ...payload,
       });
-      await customer.save();
+      await product.save();
 
       return {
-        data: customer,
+        data: product,
         success: true,
         code: HttpStatus.CREATED,
-        message: 'Customer Created',
+        message: 'product Created',
       };
     } catch (ex) {
       this.logger.error(ex);

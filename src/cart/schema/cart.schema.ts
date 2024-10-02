@@ -1,16 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import { Document, Types } from 'mongoose';
 
 export class CartItem {
+  @ApiProperty()
   @Prop({ref: 'Product'})
   product_id: string;
 
+  @ApiProperty()
   @Prop()
   quantity: number;
-  
-  @Prop()
-  price: number;
-  }
+}
 
 @Schema()
 export class Cart {
